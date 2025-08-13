@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Abdisalam Houssein Ibrahim — Portfolio</title>
+  <meta name="description" content="Portfolio de Abdisalam Houssein Ibrahim — Développeur. Projets, compétences, contact WhatsApp et CV." />
+  <meta property="og:title" content="Abdisalam Houssein Ibrahim — Portfolio" />
+  <meta property="og:description" content="Projets, compétences, contact WhatsApp et CV." />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#e10600" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --red:#e10600; /* rouge principal */
+      --red-2:#ff2d2d;
+      --black:#0b0b0d; /* noir profond */
+      --grey:#1a1a1f;
+      --white:#f5f5f7; /* blanc doux */
+      --muted:#bdbdc2;
+      --card:#121217;
+      --shadow:0 10px 30px rgba(0,0,0,.35);
+      --radius:22px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;background:radial-gradient(1200px 800px at 80% -10%, rgba(225,6,0,.18), transparent 60%),
+                               radial-gradient(1000px 700px at -10% 110%, rgba(225,6,0,.12), transparent 60%),
+                               var(--black);
+               color:var(--white);font-family:Poppins,system-ui,Segoe UI,Roboto,Arial,sans-serif;}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    .container{width:min(1200px,92vw);margin:0 auto}
+    header{position:sticky;top:0;z-index:50;background:linear-gradient(180deg, rgba(11,11,13,.9), rgba(11,11,13,.65));backdrop-filter: blur(8px);border-bottom:1px solid rgba(255,255,255,.06)}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:38px;height:38px;border-radius:12px;background:conic-gradient(from 180deg,var(--red),var(--red-2),#ff7676,var(--red));box-shadow:0 8px 20px rgba(225,6,0,.35);position:relative}
+    .logo:after{content:"";position:absolute;inset:3px;border-radius:10px;background:#121217}
+    .brand strong{font-weight:800;letter-spacing:.3px}
+    nav ul{list-style:none;display:flex;gap:18px;margin:0;padding:0}
+    nav a{padding:8px 12px;border-radius:12px;opacity:.9}
+    nav a:hover{background:rgba(225,6,0,.12);opacity:1}
+    .btn{display:inline-flex;align-items:center;gap:10px;padding:12px 16px;border-radius:14px;border:1px solid rgba(255,255,255,.08);background:#141419;box-shadow:var(--shadow);font-weight:600}
+    .btn.primary{background:linear-gradient(135deg, var(--red), var(--red-2));border:none}
+    .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,.15)}
+    .hero{display:grid;grid-template-columns:1.3fr .9fr;gap:28px;align-items:center;padding:64px 0 30px}
+    .kicker{font-size:.9rem;color:var(--muted);letter-spacing:.25px}
+    h1{font-size:clamp(34px,5.6vw,56px);line-height:1.02;margin:6px 0;background:linear-gradient(90deg,#fff, #ffdede);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .typed{display:inline-block;min-height:1.2em;border-right:2px solid var(--red);padding-right:6px;white-space:nowrap}
+    .hero p{color:#d8d8dc;opacity:.9}
+    .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
+    .profile{position:relative}
+    .profile .frame{border-radius:22px;overflow:hidden;background:linear-gradient(180deg,#1a1a1f, #0f0f12);padding:12px;border:1px solid rgba(255,255,255,.06);box-shadow:var(--shadow)}
+    .profile img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:16px;filter:saturate(1.05) contrast(1.02)}
+    .badge{position:absolute;bottom:-10px;left:-10px;background:var(--red);color:#fff;padding:10px 14px;border-radius:12px;box-shadow:var(--shadow);font-weight:700}
+
+    /* Sections */
+    section{padding:34px 0}
+    .section-title{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+    .section-title .dot{width:10px;height:10px;border-radius:50%;background:var(--red);box-shadow:0 0 0 6px rgba(225,6,0,.15)}
+    h2{margin:0;font-size:clamp(22px,3.6vw,34px)}
+    .cards{display:grid;grid-template-columns:repeat(12,1fr);gap:14px}
+    .card{grid-column:span 4;background:var(--card);border:1px solid rgba(255,255,255,.06);border-radius:18px;padding:16px;box-shadow:var(--shadow);transition:transform .2s ease}
+    .card:hover{transform:translateY(-4px)}
+
+    /* Skills */
+    .skill{display:grid;grid-template-columns:1fr auto;align-items:center;margin:10px 0}
+    .bar{grid-column:1/-1;height:10px;background:#16161c;border-radius:20px;margin-top:6px;overflow:hidden}
+    .bar > i{display:block;height:100%;width:0;background:linear-gradient(90deg, var(--red), var(--red-2));border-radius:20px}
+
+    /* Projects grid */
+    .project{position:relative;overflow:hidden;border-radius:16px;background:#0f0f12}
+    .project img{width:100%;height:180px;object-fit:cover;opacity:.9}
+    .project .info{padding:12px}
+    .project .tags{display:flex;gap:8px;flex-wrap:wrap}
+    .tag{font-size:.75rem;padding:6px 8px;border-radius:999px;background:rgba(225,6,0,.14);border:1px solid rgba(225,6,0,.25)}
+    .project .actions{display:flex;gap:10px; margin-top:10px}
+
+    /* Timeline */
+    .timeline{position:relative;margin-left:8px}
+    .timeline:before{content:"";position:absolute;left:10px;top:0;bottom:0;width:2px;background:linear-gradient(var(--red), transparent)}
+    .t-item{position:relative;padding-left:34px;margin:16px 0}
+    .t-item:before{content:"";position:absolute;left:4px;top:6px;width:14px;height:14px;border-radius:50%;background:var(--red);box-shadow:0 0 0 8px rgba(225,6,0,.15)}
+
+    /* Contact */
+    form{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    form input, form textarea{background:#111117;border:1px solid rgba(255,255,255,.08);padding:12px 14px;color:#fff;border-radius:12px;font:inherit}
+    form textarea{grid-column:1/-1;min-height:120px}
+
+    /* Footer */
+    footer{padding:22px 0;color:#b8b8bd;display:flex;justify-content:space-between;gap:10px;border-top:1px solid rgba(255,255,255,.08)}
+
+    /* Filter buttons */
+    .filters{display:flex;gap:10px;flex-wrap:wrap;margin:8px 0 16px}
+    .chip{padding:8px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.15);cursor:pointer;user-select:none}
+    .chip.active, .chip:hover{background:rgba(225,6,0,.14);border-color:rgba(225,6,0,.35)}
+
+    /* Lightbox */
+    dialog{background:#0f0f12;border:none;border-radius:16px;color:#fff;padding:0;max-width:min(1000px,92vw)}
+    dialog::backdrop{background:rgba(0,0,0,.6)}
+    .lightbox img{max-height:80vh;width:auto;display:block}
+    .lightbox .top{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.08)}
+
+    /* Responsive */
+    @media (max-width: 900px){
+      .hero{grid-template-columns:1fr;gap:18px}
+      .card{grid-column:span 6}
+      footer{flex-direction:column;align-items:flex-start}
+    }
+    @media (max-width: 600px){
+      .card{grid-column:span 12}
+      form{grid-template-columns:1fr}
+    }
+
+    /* Simple scroll reveal */
+    [data-reveal]{opacity:0;transform:translateY(10px);transition:all .5s ease}
+    [data-reveal].visible{opacity:1;transform:none}
+
+    /* Floating blobs */
+    .blobs{position:fixed;inset:0;z-index:-1;pointer-events:none}
+    .blob{position:absolute;filter:blur(40px);opacity:.18;mix-blend-mode:screen}
+    .b1{background:radial-gradient(400px 300px at center, var(--red), transparent 70%);width:600px;height:600px;top:-160px;right:-120px;animation:float 12s ease-in-out infinite}
+    .b2{background:radial-gradient(400px 300px at center, var(--red-2), transparent 70%);width:500px;height:500px;bottom:-120px;left:-120px;animation:float 16s ease-in-out infinite reverse}
+    @keyframes float{50%{transform:translateY(20px)}}
+
+    /* Back to top */
+    #toTop{position:fixed;right:16px;bottom:16px;z-index:40;display:none}
+  </style>
+</head>
+<body>
+  <div class="blobs">
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
+  </div>
+
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <strong>Abdisalam Houssein Ibrahim</strong>
+          <div class="kicker">Développeur • Djibouti</div>
+        </div>
+      </div>
+      <nav aria-label="Navigation primaire">
+        <ul>
+          <li><a href="#about">À propos</a></li>
+          <li><a href="#skills">Compétences</a></li>
+          <li><a href="#projects">Projets</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- HERO -->
+    <section class="hero" id="home">
+      <div>
+        <div class="kicker">Bonjour 👋 je suis</div>
+        <h1>Abdisalam Houssein Ibrahim</h1>
+        <p class="kicker"><span class="typed" id="typing"></span></p>
+        <p>Développeur passionné, avec une <strong>Licence en Génie Informatique (Programmation)</strong> à l’<strong>Institut Africain de Djibouti</strong>. J’aime construire des solutions web modernes, rapides et élégantes.</p>
+        <div class="cta">
+          <!-- Remplace l'attribut href par l'URL de ton vrai CV PDF (ou place un fichier à côté et ajuste le chemin) -->
+          <a class="btn primary" id="cvBtn" href="Abdisalam.pdf" download>
+            <!-- Download icon -->
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 21h16" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Télécharger mon CV
+          </a>
+          <button class="btn ghost" id="whatsBtn" type="button">
+            <!-- WhatsApp icon -->
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 20l1.7-4.6A8 8 0 1011.9 21 8.5 8.5 0 018.4 20L3 20z" stroke="#fff" stroke-width="1.4"/><path d="M16.6 14.2c-.2.6-1.2 1-1.7.9-.5-.1-1.1-.3-2-.8-1.7-1-2.8-2.7-3.3-3.2-.4-.4-.7-1.1-.6-1.7.1-.5.6-1.4.9-1.6.2-.2.5-.2.6-.2h.4c.1 0 .3 0 .4.3.2.6.6 1.4.7 1.5.1.2.1.3 0 .5-.1.2-.2.3-.4.6-.1.2-.3.5-.2.7.1.2.5.9 1.2 1.4.8.6 1.4.8 1.6.9.2.1.4.1.6 0 .2-.1.9-.5 1-.6.1-.1.3-.1.5 0s1.3.6 1.5.7c.2.1.3.1.4.2 0 .2-.1.8-.3 1.1z" fill="#fff"/></svg>
+            WhatsApp
+          </button>
+        </div>
+      </div>
+      <div class="profile" aria-label="Photo de profil">
+        <div class="frame">
+          <!-- Remplace src par ta propre photo; ou clique pour importer -->
+          <img id="avatar" src="image.jpg" alt="Portrait d'Abdisalam" />
+        </div>
+        <div class="badge">+253 77 29 89 53</div>
+        <input type="file" id="fileInput" accept="image/*" hidden>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" data-reveal>
+      <div class="section-title"><span class="dot"></span><h2>À propos</h2></div>
+      <p>Développeur front & back, j’aime transformer les idées en applications propres et efficaces. Mon focus : performance, accessibilité, animations soignées et une expérience utilisateur impeccable.</p>
+      <div class="cards" style="margin-top:12px">
+        <div class="card" aria-label="Contact">
+          <strong>Contact direct</strong>
+          <p style="margin:8px 0 0 0">📧 abdisalamhoussein771@gmail.com<br/>📞 +253 77 29 89 53</p>
+        </div>
+        <div class="card" aria-label="Localisation">
+          <strong>Localisation</strong>
+          <p style="margin:8px 0 0 0">Djibouti-ville • Djibouti</p>
+        </div>
+        <div class="card" aria-label="Diplôme">
+          <strong>Diplôme</strong>
+          <p style="margin:8px 0 0 0">Licence en Génie Informatique (Programmation) — Institut Africain de Djibouti</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" data-reveal>
+      <div class="section-title"><span class="dot"></span><h2>Compétences</h2></div>
+      <div class="cards">
+        <div class="card">
+          <h3>Frontend</h3>
+          <div class="skill"><span>HTML5 / CSS3</span><span>95%</span><div class="bar"><i data-fill="95"></i></div></div>
+          <div class="skill"><span>JavaScript (ES+)</span><span>90%</span><div class="bar"><i data-fill="90"></i></div></div>
+          <div class="skill"><span>React / Vue</span><span>80%</span><div class="bar"><i data-fill="80"></i></div></div>
+        </div>
+        <div class="card">
+          <h3>Backend</h3>
+          <div class="skill"><span>Node / Express</span><span>80%</span><div class="bar"><i data-fill="80"></i></div></div>
+          <div class="skill"><span>PHP / Laravel</span><span>75%</span><div class="bar"><i data-fill="75"></i></div></div>
+          <div class="skill"><span>REST / Auth</span><span>85%</span><div class="bar"><i data-fill="85"></i></div></div>
+        </div>
+        <div class="card">
+          <h3>Outils</h3>
+          <div class="skill"><span>Git & GitHub</span><span>85%</span><div class="bar"><i data-fill="85"></i></div></div>
+          <div class="skill"><span>Docker (bases)</span><span>60%</span><div class="bar"><i data-fill="60"></i></div></div>
+          <div class="skill"><span>CI/CD (bases)</span><span>55%</span><div class="bar"><i data-fill="55"></i></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" data-reveal>
+      <div class="section-title"><span class="dot"></span><h2>Projets</h2></div>
+      <div class="filters" role="tablist" aria-label="Filtrer les projets">
+        <div class="chip active" data-filter="all" role="tab" aria-selected="true">Tous</div>
+        <div class="chip" data-filter="web" role="tab">Web</div>
+        <div class="chip" data-filter="mobile" role="tab">Mobile</div>
+        <div class="chip" data-filter="autre" role="tab">Autre</div>
+      </div>
+
+      <div class="cards" id="projectGrid">
+        <!-- Exemple de carte de projet : duplique et remplace l'image, le titre, la description et les liens -->
+        <article class="card project" data-cat="web">
+          <img src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?q=80&w=1200&auto=format&fit=crop" alt="Capture du projet Parc Informatique" />
+          <div class="info">
+            <h3>Gestion du Parc Informatique</h3>
+            <p>Application web pour l’Hôpital Cheiko: enregistrement du matériel (réf., séries, localisation), inventaire et suivi.</p>
+            <div class="tags"><span class="tag">Laravel</span><span class="tag">MySQL</span><span class="tag">Tailwind</span></div>
+            <div class="actions">
+              <a class="btn" href="#" data-view="https://images.unsplash.com/photo-1587620962725-abab7fe55159?q=80&w=1200&auto=format&fit=crop">Aperçu</a>
+              <a class="btn ghost" href="#">Code</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card project" data-cat="mobile">
+          <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop" alt="Capture app mobile" />
+          <div class="info">
+            <h3>App Mobile Services</h3>
+            <p>Prototype d’app pour réservation de services locaux avec notifications et chat.</p>
+            <div class="tags"><span class="tag">Flutter</span><span class="tag">Firebase</span></div>
+            <div class="actions">
+              <a class="btn" href="#" data-view="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1200&auto=format&fit=crop">Aperçu</a>
+              <a class="btn ghost" href="#">Code</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card project" data-cat="web">
+          <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1200&auto=format&fit=crop" alt="Capture tableau de bord" />
+          <div class="info">
+            <h3>Dashboard Analytique</h3>
+            <p>Tableau de bord KPI en temps réel: graphiques, filtres et export CSV.</p>
+            <div class="tags"><span class="tag">React</span><span class="tag">Node</span></div>
+            <div class="actions">
+              <a class="btn" href="#" data-view="https://images.unsplash.com/photo-1551281044-8d8d0d8d8d8d?q=80&w=1200&auto=format&fit=crop">Aperçu</a>
+              <a class="btn ghost" href="#">Code</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card project" data-cat="autre">
+          <img src="https://images.unsplash.com/photo-1556157382-97eda2d62296?q=80&w=1200&auto=format&fit=crop" alt="Automatisation" />
+          <div class="info">
+            <h3>Automatisation Scripts</h3>
+            <p>Scripts d’automatisation pour déploiement et backups sécurisés.</p>
+            <div class="tags"><span class="tag">Bash</span><span class="tag">CI/CD</span></div>
+            <div class="actions">
+              <a class="btn" href="#" data-view="https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1200&auto=format&fit=crop">Aperçu</a>
+              <a class="btn ghost" href="#">Code</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- TIMELINE / ÉDUCATION -->
+    <section id="timeline" data-reveal>
+      <div class="section-title"><span class="dot"></span><h2>Parcours</h2></div>
+      <div class="timeline">
+        <div class="t-item">
+          <h3>Licence en Génie Informatique (Programmation)</h3>
+          <div class="kicker">Institut Africain de Djibouti</div>
+          <p>Conception logicielle, structures de données, développement web et mobile, bases de données, sécurité et projets pratiques.</p>
+        </div>
+        <div class="t-item">
+          <h3>Stage / Missions</h3>
+          <div class="kicker">Développement d’outils internes & automatisation</div>
+          <p>Participation à la mise en place de plateformes et d’APIs, intégrations, optimisation des performances.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" data-reveal>
+      <div class="section-title"><span class="dot"></span><h2>Contact</h2></div>
+      <p>N’hésitez pas à m’écrire. Je réponds rapidement.</p>
+      <form id="contactForm">
+        <input name="name" placeholder="Votre nom" required aria-label="Votre nom" />
+        <input type="email" name="email" placeholder="Votre email" required aria-label="Votre email" />
+        <textarea name="message" placeholder="Votre message" required aria-label="Votre message"></textarea>
+        <button class="btn primary" type="submit">Envoyer par email</button>
+      </form>
+    </section>
+
+    <button id="toTop" class="btn" aria-label="Remonter en haut">⬆</button>
+  </main>
+
+  <footer class="container">
+    <small>© <span id="year"></span> Abdisalam Houssein Ibrahim — Tous droits réservés.</small>
+    <small>Thème: rouge • noir • blanc — Animations fluides.</small>
+  </footer>
+
+  <!-- Lightbox dialog -->
+  <dialog id="viewer"><div class="lightbox">
+    <div class="top"><strong>Aperçu</strong><button class="btn ghost" id="closeViewer">Fermer</button></div>
+    <img id="viewerImg" alt="Aperçu du projet" />
+  </div></dialog>
+
+  <script>
+    // === Typing effect ===
+    const roles=[
+      "Développeur Web / Mobile",
+      "Full‑Stack (Laravel, React)",
+      "Créateur d'UX animé",
+      "Disponible pour vos projets"
+    ];
+    let i=0, j=0, deleting=false; const typed=document.getElementById('typing');
+    function type(){
+      const current=roles[i];
+      typed.textContent=current.slice(0, j);
+      if(!deleting){
+        if(j<current.length){ j++; }
+        else{ deleting=true; setTimeout(type,1100); return; }
+      }else{
+        if(j>0){ j--; }
+        else{ deleting=false; i=(i+1)%roles.length; }
+      }
+      setTimeout(type, deleting?40:70);
+    }
+    type();
+
+    // === WhatsApp button: desktop -> web, mobile -> app ===
+    const whatsBtn=document.getElementById('whatsBtn');
+    whatsBtn.addEventListener('click',()=>{
+      const number='25377298953'; // sans +
+      const msg=encodeURIComponent("Salut Abdisalam, je viens de voir ton portfolio ✨");
+      const isMobile=/Android|iPhone|iPad|iPod|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      const url=isMobile? `whatsapp://send?phone=${number}&text=${msg}` : `https://wa.me/${number}?text=${msg}`;
+      window.open(url,'_blank');
+    });
+
+    // === Smooth scroll for internal links ===
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click',e=>{
+        const id=a.getAttribute('href').slice(1);
+        const el=document.getElementById(id);
+        if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth', block:'start'});} 
+      });
+    });
+
+    // === Reveal on scroll ===
+    const observer=new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); } });
+    },{threshold:.12});
+    document.querySelectorAll('[data-reveal]').forEach(el=>observer.observe(el));
+
+    // === Animated skill bars when in view ===
+    const bars=document.querySelectorAll('.bar > i');
+    const barsObs=new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ const w=e.target.getAttribute('data-fill'); e.target.style.width=w+'%'; } });
+    },{threshold:.5});
+    bars.forEach(b=>barsObs.observe(b));
+
+    // === Project filter ===
+    const chips=[...document.querySelectorAll('.chip')];
+    const grid=document.getElementById('projectGrid');
+    chips.forEach(ch=>ch.addEventListener('click',()=>{
+      chips.forEach(c=>c.classList.remove('active'));
+      ch.classList.add('active');
+      const cat=ch.dataset.filter;
+      grid.querySelectorAll('.project').forEach(card=>{
+        card.style.display=(cat==='all'|| card.dataset.cat===cat)?'block':'none';
+      })
+    }));
+
+    // === Lightbox ===
+    const viewer=document.getElementById('viewer');
+    const viewerImg=document.getElementById('viewerImg');
+    const closeViewer=document.getElementById('closeViewer');
+    document.querySelectorAll('[data-view]').forEach(btn=>{
+      btn.addEventListener('click', (e)=>{
+        e.preventDefault();
+        const src=btn.getAttribute('data-view');
+        viewerImg.src=src; viewer.showModal();
+      })
+    })
+    closeViewer.addEventListener('click',()=>viewer.close());
+
+    // === Back to top ===
+    const toTop=document.getElementById('toTop');
+    window.addEventListener('scroll',()=>{
+      toTop.style.display = window.scrollY>400? 'inline-flex':'none';
+    });
+    toTop.addEventListener('click',()=>window.scrollTo({top:0, behavior:'smooth'}));
+
+    // === Contact form via mailto ===
+    document.getElementById('contactForm').addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const fd=new FormData(e.target);
+      const subject=encodeURIComponent('Contact Portfolio');
+      const body=encodeURIComponent(`Nom: ${fd.get('name')}\nEmail: ${fd.get('email')}\n\n${fd.get('message')}`);
+      window.location.href=`mailto:abdisalamhoussein771@gmail.com?subject=${subject}&body=${body}`;
+    });
+
+    // === Click avatar to upload custom photo (stockée localement) ===
+    const avatar=document.getElementById('avatar');
+    const fileInput=document.getElementById('fileInput');
+    avatar.addEventListener('click',()=>fileInput.click());
+    fileInput.addEventListener('change',()=>{
+      const file=fileInput.files[0];
+      if(!file) return;
+      const reader=new FileReader();
+      reader.onload=()=>{
+        avatar.src=reader.result;
+        try{ localStorage.setItem('abdi_avatar', reader.result); }catch(err){}
+      };
+      reader.readAsDataURL(file);
+    });
+    // Charger depuis localStorage si dispo
+    try{
+      const saved=localStorage.getItem('abdi_avatar');
+      if(saved) avatar.src=saved;
+    }catch(err){}
+
+    // Year
+    document.getElementById('year').textContent=new Date().getFullYear();
+  </script>
+</body>
+</html>
